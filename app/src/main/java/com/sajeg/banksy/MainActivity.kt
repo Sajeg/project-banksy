@@ -44,9 +44,9 @@ class MainActivity : ComponentActivity() {
                 }
 
                 // Checks if ArCore Services are supported
-                if (SessionManager.checkForARCoreSupport(this, this)) {
-                    SessionManager.createSession(this)
-                }
+//                if (SessionManager.checkForARCoreSupport(this, this)) {
+//                    SessionManager.createSession(this)
+//                }
             }
         }
     }

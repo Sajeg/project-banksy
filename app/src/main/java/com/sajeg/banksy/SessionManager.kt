@@ -38,10 +38,10 @@ object SessionManager {
         }
     }
 
-    fun createSession(context: Context) {
+    fun createSession(context: Context, thisSession: Session) {
         session = Session(context)
         config = Config(session)
-        config!!.augmentedImageDatabase = ImageDatabase.getDatabase()
+        config!!.augmentedImageDatabase = ImageDatabase.getDatabase(thisSession)
         session!!.configure(config)
     }
 
@@ -49,5 +49,9 @@ object SessionManager {
         if (session != null) {
             session!!.close()
         }
+    }
+
+    fun getSession() : Session?{
+        return session
     }
 }

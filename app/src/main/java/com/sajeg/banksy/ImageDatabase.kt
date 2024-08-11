@@ -3,17 +3,23 @@ package com.sajeg.banksy
 import android.content.Context
 import android.graphics.BitmapFactory
 import com.google.ar.core.AugmentedImageDatabase
+import com.google.ar.core.Session
 import java.io.InputStream
 
 object ImageDatabase {
-    private val database = AugmentedImageDatabase(MainActivity().arSession)
+    private var database: AugmentedImageDatabase? = null
 
     fun addImage(context: Context) {
         val bitmap = context.assets.open("image.jpg").use { BitmapFactory.decodeStream(it)}
-        database.addImage("book", bitmap)
+        database!!.addImage("book", bitmap)
     }
 
-    fun getDatabase(): AugmentedImageDatabase {
-        return database
+    fun getDatabase(session: Session): AugmentedImageDatabase {
+        if (database == null) {
+            database = AugmentedImageDatabase(session)
+            return database!!
+        } else {
+            return database!!
+        }
     }
 }

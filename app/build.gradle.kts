@@ -54,6 +54,7 @@ android {
 dependencies {
     // AR Core
     implementation(libs.core)
+    implementation(libs.arsceneview)
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
