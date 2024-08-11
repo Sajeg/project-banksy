@@ -44,44 +44,16 @@ class MainActivity : ComponentActivity() {
                 }
 
                 // Checks if ArCore Services are supported
-                ArCoreApk.getInstance().checkAvailabilityAsync(this) { availability ->
-                    if (!availability.isSupported) {
-                        Log.e("ARCore", "Device unsupported")
-                        finish()
-                    }
+                if (SessionManager.checkForARCoreSupport(this, this)) {
+                    SessionManager.createSession(this)
                 }
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Checks if the Services are installed and creates a session
-        try {
-            if (arSession == null) {
-                when (ArCoreApk.getInstance().requestInstall(this, arUserRequestedInstall)) {
-                    ArCoreApk.InstallStatus.INSTALLED -> {
-                        arSession = Session(this)
-                    }
-                    ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
-                        arUserRequestedInstall = false
-                        return
-                    }
-                }
-            }
-        } catch (e: UnavailableUserDeclinedInstallationException) {
-            Toast.makeText(this, "App requires these services", Toast.LENGTH_LONG)
-                .show()
-            return
-        } catch (e: Exception) {
-            Log.e("ARCore", "Init failed")
-            return
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
-        arSession?.close()
+        SessionManager.destroySession()
     }
 }

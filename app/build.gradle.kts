@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.sajeg.banksy"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sajeg.banksy"
