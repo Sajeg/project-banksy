@@ -4,16 +4,13 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
-import com.google.ar.core.ArCoreApk
 import com.google.ar.core.Session
-import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException
 import com.sajeg.banksy.ui.theme.ProjectBanksyTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,11 +46,5 @@ class MainActivity : ComponentActivity() {
 //                }
             }
         }
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        SessionManager.destroySession()
     }
 }
