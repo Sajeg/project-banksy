@@ -41,7 +41,7 @@ object SessionManager {
     fun createSession(context: Context, thisSession: Session) {
         session = Session(context)
         config = Config(session)
-        config!!.augmentedImageDatabase = ImageDatabase.getDatabase(thisSession)
+        config!!.augmentedImageDatabase = ImageDatabase.getDatabase(thisSession, context)
         session!!.configure(config)
     }
 
