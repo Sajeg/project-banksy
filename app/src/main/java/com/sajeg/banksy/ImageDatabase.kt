@@ -15,12 +15,13 @@ object ImageDatabase {
         book = database!!.addImage("book", bitmap)
     }
 
-    fun getDatabase(session: Session): AugmentedImageDatabase {
+    fun getDatabase(session: Session, context: Context): AugmentedImageDatabase {
         if (database == null) {
             database = AugmentedImageDatabase(session)
             for (img in images) {
                 img.index = database!!.addImage(img.name, img.bitmap)
             }
+            addImage(context)
             return database!!
         } else {
             return database!!
