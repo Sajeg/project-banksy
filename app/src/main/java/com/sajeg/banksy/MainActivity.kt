@@ -40,6 +40,13 @@ class MainActivity : ComponentActivity() {
                     requestPermissionLauncher.launch(Manifest.permission.CAMERA)
                 }
 
+                // Checks for Location permission
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                }
+
                 // Checks if ArCore Services are supported
 //                if (SessionManager.checkForARCoreSupport(this, this)) {
 //                    SessionManager.createSession(this)

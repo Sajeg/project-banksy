@@ -58,7 +58,7 @@ fun ARScreen(navController: NavController) {
     ARScene(
         engine = engine,
         modifier = Modifier.fillMaxSize(),
-        planeRenderer = planeRenderer,
+        planeRenderer = true,
         sessionConfiguration = { session, config ->
 //            config.depthMode =
 //                when (session.isDepthModeSupported(Config.DepthMode.AUTOMATIC)) {
@@ -66,6 +66,7 @@ fun ARScreen(navController: NavController) {
 //                    else -> Config.DepthMode.DISABLED
 //                }
 //            config.lightEstimationMode = Config.LightEstimationMode.ENVIRONMENTAL_HDR
+            config.geospatialMode = Config.GeospatialMode.ENABLED
             config.imageStabilizationMode = Config.ImageStabilizationMode.EIS
             config.augmentedImageDatabase = ImageDatabase.getDatabase(session, context)
         },
@@ -145,7 +146,6 @@ fun createAnchorNode(
         center = modelNode.center,
         materialInstance = materialLoader.createColorInstance(Color.White.copy(alpha = 0.5f))
     ).apply {
-        isVisible = false
     }
     modelNode.addChildNode(boundingBoxNode)
     anchorNode.addChildNode(modelNode)
